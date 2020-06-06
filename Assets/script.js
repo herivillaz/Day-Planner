@@ -4,6 +4,7 @@ $(document).ready(function () {
     var currentHour = moment().hours();
     var todaysDate = moment().format("dddd, MMMM Do YYYY");
     console.log(currentHour);
+    //Create Variable with the hours.
     var timeInputs = [
         { time: 7, input: "" },
         { time: 8, input: "" },
@@ -23,11 +24,13 @@ $(document).ready(function () {
         { time: 21, input: "" },
         { time: 22, input: "" },
         { time: 23, input: "" },
-
     ]
+    //Show Today's date on the DOM
     function printTime() {
         $("#currentDay").text(todaysDate);
     }
+
+    //Show Hours on the DOM
     function printInputBlocks() {
         for (let i = 0; i < timeInputs.length; i++) {
             console.log(timeInputs[i].time, timeInputs[i].input);
