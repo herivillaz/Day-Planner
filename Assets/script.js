@@ -20,10 +20,6 @@ $(document).ready(function () {
         { time: 13, input: "" },
         { time: 18, input: "" },
         { time: 19, input: "" },
-        { time: 20, input: "" },
-        { time: 21, input: "" },
-        { time: 22, input: "" },
-        { time: 23, input: "" },
     ]
     //Show Today's date on the DOM
     function printTime() {
@@ -34,17 +30,28 @@ $(document).ready(function () {
     function printInputBlocks() {
         for (let i = 0; i < timeInputs.length; i++) {
             console.log(timeInputs[i].time, timeInputs[i].input);
-            var inputGroup = $('<div class="input-group mb-3" id="times">');
+            var inputGroup = $('<div class="input-group mb-3" id="inputGroup-sizing-lg">').css("font-size", "20px");
             var inputGroupPrepend = $('<div class="input-group-prepend" id="times">');
             var prependSpan = $('<span class="input-group-text" id="times">' + timeInputs[i].time + ':00' + '</span>').attr({ class: "hour"});
             inputGroupPrepend.append(prependSpan);
             var inputEl = $('<input type="text" class="form-control"  value="' + timeInputs[i].input + '" id="times-'+i+'">');
             var inputGroupAppend = $('<div class="input-group-append" id="times">');
-            var appendSpan = $('<span data-time="" class="input-group-text" id="times"><button id="save">Save</button></span>').attr({ class: "saveBtn"});
+            var appendSpan = $('<span data-time="" class="input-group-text"><button id="saveB-' + i + '">Save</button></span>').attr({ class: "saveBtn"});
             inputGroupAppend.append(appendSpan);
             inputGroup.append(inputGroupPrepend).append(inputEl).append(inputGroupAppend);
             $(".container").append(inputGroup);
         }
+        $("button").click(function () {
+
+            event.preventDefault();
+            var currentID = $(this).attr('id');
+            currentID = currentID.split('-') // [saveB, 2]
+            currentID = currentID[1];
+            var toStore = $("#times-" + currentID).val();
+            console.log(toStore);
+            localStorage.setItem(("myEvent" + currentID), toStore);
+
+        });
     }
     //Check relative time
   function colorTime() {
@@ -62,12 +69,15 @@ $(document).ready(function () {
 
 
   //Add Calendar Events to local storage
-$("save").click(function () {
-    event.preventDefault();
-    var currentID = $(this).attr('id');
-    var toStore = $(("#times-" + currentID)).val();
-    localStorage.setItem(("myEvent" + currentID), toStore);
-});
+// $("#saveB").click(function () {
+//     console.log("button.click")
+//     event.preventDefault();
+//     var currentID = $(this).attr('id');
+//     var toStore = $(("#times-" + currentID)).val();
+//     localStorage.setItem(("myEvent" + currentID), toStore);
+// });
+
+
 
 
 
