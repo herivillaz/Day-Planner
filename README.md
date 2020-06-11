@@ -4,7 +4,7 @@ Work Day Scheduler
 
 ![Home Page](/Assets/ReadMe/home.png)
 
-### You can access here: [Day Planner](https://github.com/herivillaz/HarryPotter-Quiz.git)
+### You can access here: [Day Planner](https://herivillaz.github.io/Day-Planner/)
 
 This project was made taking in consideration the following requirements in Columbia Coding Boot Camp:
 
