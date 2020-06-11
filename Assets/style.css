@@ -1,7 +1,12 @@
+html {
+  background-image: url(https://www.freevector.com/uploads/vector/preview/2465/FreeVector-Blue-Twist-Background.jpg);
+}
+
 body {
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;
   line-height: 1;
+  background: linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url(https://www.freevector.com/uploads/vector/preview/2465/FreeVector-Blue-Twist-Background.jpg);
 }
 
 textarea{
@@ -15,12 +20,13 @@ textarea{
 
 .jumbotron {
   text-align: center;
-  background-color: transparent;
+  background-image: url(https://www.freevector.com/uploads/vector/preview/2465/FreeVector-Blue-Twist-Background.jpg);
   color: black;
   border-radius: 0;
   border-bottom: 10px solid black;
   font-family: 'Bellota', cursive;
 }
+
 
 
 .description{
@@ -98,3 +104,4 @@ textarea{
     min-width: 20%;
   }
 }
+
