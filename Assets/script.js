@@ -1,26 +1,26 @@
 // var currentTime = Moment.currentTime()
 $(document).ready(function () {
-    // var timeInputs = JSON.parse(localStorage.getItem('timeInputs')) || {};
-    var currentHour = moment().hours();
-    var todaysDate = moment().format("dddd, MMMM Do YYYY");
-    console.log(currentHour);
-    //Create Variable with the hours.
-    var timeInputs = [
+    var timeInputs = JSON.parse(localStorage.getItem('timeInputs')) || [
         { time: 7, input: "" },
         { time: 8, input: "" },
-        { time: 9, input: "Wake up" },
+        { time: 9, input: "" },
         { time: 10, input: "" },
-        { time: 11, input: "Go to work" },
+        { time: 11, input: "" },
         { time: 12, input: "" },
         { time: 13, input: "" },
         { time: 14, input: "" },
         { time: 15, input: "" },
         { time: 16, input: "" },
         { time: 17, input: "" },
-        { time: 13, input: "" },
         { time: 18, input: "" },
         { time: 19, input: "" },
-    ]
+    ];
+    console.log(timeInputs);
+    var currentHour = moment().hours();
+    var todaysDate = moment().format("dddd, MMMM Do YYYY");
+    console.log(currentHour);
+    //Create Variable with the hours.
+
     //Show Today's date on the DOM
     function printTime() {
         $("#currentDay").text(todaysDate);
@@ -30,7 +30,7 @@ $(document).ready(function () {
     function printInputBlocks() {
         for (let i = 0; i < timeInputs.length; i++) {
             console.log(timeInputs[i].time, timeInputs[i].input);
-            var inputGroup = $('<div class="input-group mb-3" id="inputGroup-sizing-lg">').css("font-size", "20px");
+            var inputGroup = $('<div class="input-group mb-3" id="times">').css("font-size", "20px");
             var inputGroupPrepend = $('<div class="input-group-prepend" id="times">');
             var prependSpan = $('<span class="input-group-text" id="times">' + timeInputs[i].time + ':00' + '</span>').attr({ class: "hour"});
             inputGroupPrepend.append(prependSpan);
@@ -41,15 +41,26 @@ $(document).ready(function () {
             inputGroup.append(inputGroupPrepend).append(inputEl).append(inputGroupAppend);
             $(".container").append(inputGroup);
         }
+
+        //Button Save
+        ////Add Calendar Events to local storage
         $("button").click(function () {
 
             event.preventDefault();
             var currentID = $(this).attr('id');
             currentID = currentID.split('-') // [saveB, 2]
             currentID = currentID[1];
+            console.log(currentID);
             var toStore = $("#times-" + currentID).val();
             console.log(toStore);
-            localStorage.setItem(("myEvent" + currentID), toStore);
+            for (var i = 0; i < timeInputs.length; i++) {
+                if (timeInputs[i].time === parseInt(currentID) + 7) {
+                    timeInputs[i].input = toStore;
+                }
+            }
+            console.log(timeInputs);
+            
+            localStorage.setItem("timeInputs",JSON.stringify(timeInputs));
 
         });
     }
